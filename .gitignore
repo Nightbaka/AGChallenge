@@ -1,8 +1,0 @@
-x64/
-AG*
-*.txt
-.gitignore
-.cpp
-.h
-!Optimizer.cpp
-!Optimizer.h
