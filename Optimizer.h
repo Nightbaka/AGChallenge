@@ -4,7 +4,6 @@
 
 #include <random>
 #include <vector>
-#include "Individual.h"
 
 
 using namespace std;

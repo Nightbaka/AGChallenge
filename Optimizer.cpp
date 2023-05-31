@@ -12,13 +12,10 @@ COptimizer::COptimizer(CEvaluator &cEvaluator)
 	random_device c_seed_generator;
 	c_rand_engine.seed(c_seed_generator());
 	d_current_best_fitness = 0;
-
-	//my changes 
-}//COptimizer::COptimizer(CEvaluator &cEvaluator)
+}
 
 COptimizer::~COptimizer()
 {
-	//error
 	//delete pyramid of Clusters
 	for (size_t i = 0; i < pyramidOfClusters.size(); i++)
 	{
@@ -71,13 +68,13 @@ void COptimizer::vInitialize()
 	distances.resize(clusterSize, vector<double>(clusterSize, -1));
 	int baseSize = 20000;
 	solutionsMap.reserve(baseSize);
-}//void COptimizer::vInitialize()
+}
 
 void COptimizer::vRunIteration()
 {
 	p3Iteration();
 	currentIteration++;
-}//void COptimizer::vRunIteration()
+}
 
 double COptimizer::averageRandomSolution() {
 	vector<int> randomVector(genomeLength);
@@ -160,16 +157,6 @@ void COptimizer::p3Iteration() {
 	}
 	updateBest(*solution, fitness);
 	delete solution;
-	/*ideas to add to project :
-		- limit pop by max Size, move pyramid up when limit reached
-		- Apply extra hillclimber after crossover
-		- limit nr of times i rebuild clusters
-		- change minimum nr for crossover
-		- send it before 14!
-		- use higher lvl crossover matrix
-		- check if the best solution is correctly updated
-		- delete all couts
-	*/
 }
 
 void COptimizer::v_fill_randomly(vector<int> &vSolution)
@@ -182,7 +169,6 @@ void COptimizer::v_fill_randomly(vector<int> &vSolution)
 		vSolution.at(i) = c_uniform_int_distribution(c_rand_engine);
 	}
 	return;
-	//for (size_t i = 0; i < vSolution.size(); i++)
 }
 
 double COptimizer::climbHill(vector<int> & genome) {
@@ -222,7 +208,6 @@ bool COptimizer::inject(vector<int>& cluster, vector<int>& solution, vector<int>
 
 	for (int i = 0; i < cluster.size(); i++) {
 		int index = cluster[i];
-		//error
 		changed |= (solution[index] != donor[index]);
 		tmpStorage[i] = solution[index];
 		solution[index] = donor[index];
@@ -289,7 +274,6 @@ void COptimizer::buildClusters(int level)
 			{
 				break;
 			}
-			//black magic does work?
 			swap(usable[chainLength], usable[closestIndexInUsable]);
 			chainLength++;
 		}
@@ -489,7 +473,3 @@ void COptimizer::updateBest(vector<int>& newBest, double fitness) {
 	d_current_best_fitness = fitness;
 	v_current_best = newBest;
 }
-
-
-
-//void COptimizer::v_fill_randomly(const vector<int> &vSolution)
